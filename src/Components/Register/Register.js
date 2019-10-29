@@ -1,4 +1,5 @@
 import React from "react";
+import Login from "../Login/Login";
 
 function Register() {
   return (
@@ -18,6 +19,7 @@ function Register() {
       <label>Phone Number</label>
       <input />
       <button>Register</button>
+      <Login />
     </div>
   );
 }

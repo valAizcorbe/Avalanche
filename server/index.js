@@ -3,7 +3,7 @@ const express = require("express");
 const massive = require("massive");
 const session = require("express-session");
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
-// const authCtrl = require("./controllers/authController");
+const authCtrl = require("./controllers/authController");
 const app = express();
 const port = SERVER_PORT;
 app.use(express.json());
@@ -25,6 +25,10 @@ app.use(
     }
   })
 );
+
+//auth controller
+
+app.post("/auth/login", authCtrl.login);
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

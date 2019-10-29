@@ -1,6 +1,6 @@
 import React from "react";
 
-function Authentication() {
+function Register() {
   return (
     <div>
       <label>First Name</label>
@@ -17,9 +17,9 @@ function Authentication() {
       </p>
       <label>Phone Number</label>
       <input />
-      <button>Save</button>
+      <button>Register</button>
     </div>
   );
 }
 
-export default Authentication;
+export default Register;

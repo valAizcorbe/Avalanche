@@ -1,0 +1,32 @@
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #dfdfdf;
+  background: #2d5c72;
+  width: 100vw;
+  -webkit-box-align: space-around;
+      -ms-flex-align: space-around;
+          align-items: space-around;
+}
+
+header h1 {
+  font-weight: bolder;
+}
+
+header button {
+  background: #2d5c72;
+  border: none;
+  color: #dfdfdf;
+}
+
+header button:hover {
+  font-size: 20px;
+}
+/*# sourceMappingURL=header.css.map */

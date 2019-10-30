@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { login } from "../../ducks/reducer";
+import { login, updateUser } from "../../ducks/reducer";
 
 class Auth extends Component {
   constructor(props) {
@@ -24,13 +24,13 @@ class Auth extends Component {
         passwordLog: this.state.passwordLog
       })
       .then(res => {
-        // this.props.history.push("/dashboard");
-        this.props.updateUser(res.data);
-        this.props.login();
         this.setState({
           emailLog: "",
           passwordLog: ""
         });
+        this.props.history.push("/account");
+        this.props.updateUser(res.data);
+        this.props.login();
       })
       .catch(err => console.log(err));
   };
@@ -38,7 +38,7 @@ class Auth extends Component {
   handleRegister = () => {
     const { email, password, firstName, lastName, phone } = this.state;
     axios
-      .post("auth/register", {
+      .post("/auth/register", {
         email,
         password,
         firstName,
@@ -55,7 +55,8 @@ class Auth extends Component {
           lastName: "",
           phone: 0
         });
-      });
+      })
+      .catch(err => console.log(err));
   };
 
   handleInputs = e => {
@@ -77,22 +78,24 @@ class Auth extends Component {
     } = this.state;
     return (
       <div>
-        <label>Email: </label>
-        <input
-          name="emailLog"
-          value={emailLog}
-          type="email"
-          onChange={e => this.handleInputs(e)}
-        />
-        <label>Password:</label>
-        <input
-          name="passwordLog"
-          value={passwordLog}
-          type="password"
-          onChange={e => this.handleInputs(e)}
-        />
-        <button onClick={this.handleLogin}>Login</button>
-        <div>
+        <div className="login-box">
+          <label>Email: </label>
+          <input
+            name="emailLog"
+            value={emailLog}
+            type="email"
+            onChange={e => this.handleInputs(e)}
+          />
+          <label>Password:</label>
+          <input
+            name="passwordLog"
+            value={passwordLog}
+            type="password"
+            onChange={e => this.handleInputs(e)}
+          />
+          <button onClick={this.handleLogin}>Login</button>
+        </div>
+        <div className="register-box">
           <label>First Name:</label>
           <input
             name="firstName"
@@ -145,7 +148,8 @@ const mapStateToProps = reduxState => {
 };
 
 const mapDispatchToProps = {
-  login
+  login,
+  updateUser
 };
 
 export default connect(

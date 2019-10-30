@@ -1,7 +1,6 @@
 import React from "react";
 import Header from "./Components/Header/Header";
 import "./App.css";
-import Landing from "./Components/Landing/Landing";
 import routes from "./routes";
 import { Provider } from "react-redux";
 import store from "./ducks/store";

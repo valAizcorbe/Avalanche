@@ -1,4 +1,4 @@
-inser into users (
+insert into users (
 user_email,
 user_password,
 user_name,

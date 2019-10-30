@@ -44,5 +44,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, user: { signedIn: true } };
     case LOGOUT:
       return { ...state, user: { signedIn: false } };
+    default:
+      return state;
   }
 }

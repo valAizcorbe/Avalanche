@@ -10,7 +10,7 @@ function Header() {
       <Link to="/">
         <button className="header-button">Home</button>
       </Link>
-      <Link to="/register">
+      <Link to="/authentication">
         <button className="header-button">Register</button>
       </Link>
     </header>

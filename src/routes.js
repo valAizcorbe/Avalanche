@@ -2,7 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Account from "./Components/Account/Account";
 import Dashboard from "./Components/Dashboard/Dashboard";
-import Register from "./Components/Register/Register";
+import Auth from "./Components/Auth/Auth";
 import Landing from "./Components/Landing/Landing";
 
 export default (
@@ -10,6 +10,6 @@ export default (
     <Route exact path="/" component={Landing} />
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/account" component={Account} />
-    <Route path="/register" component={Register} />
+    <Route path="/authentication" component={Auth} />
   </Switch>
 );

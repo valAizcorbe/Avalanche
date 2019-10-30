@@ -29,6 +29,7 @@ app.use(
 //auth controller
 
 app.post("/auth/login", authCtrl.login);
+app.post("/auth/register", authCtrl.register);
 
 app.listen(port, () => {
   console.log(`Server listening on port ${port}`);

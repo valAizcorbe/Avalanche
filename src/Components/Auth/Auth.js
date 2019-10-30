@@ -28,7 +28,7 @@ class Auth extends Component {
           emailLog: "",
           passwordLog: ""
         });
-        this.props.history.push("/account");
+        this.props.history.push("/dashboard");
         this.props.updateUser(res.data);
         this.props.login();
       })

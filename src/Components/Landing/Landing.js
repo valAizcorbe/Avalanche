@@ -44,7 +44,7 @@ function Landing() {
         width="500px"
         alt="man skiing"
       />
-      <button>Try Avalanche</button>
+      <button>Register or Login</button>
     </div>
   );
 }

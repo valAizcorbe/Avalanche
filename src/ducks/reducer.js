@@ -13,10 +13,18 @@ const initialState = {
 const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
 const UPDATE_USER = "UPDATE_USER";
+const GET_USER = "GET_USER";
 
 export function updateUser(userObj) {
   return {
     type: UPDATE_USER,
+    payload: userObj
+  };
+}
+
+export function getUser(userObj) {
+  return {
+    type: GET_USER,
     payload: userObj
   };
 }
@@ -44,6 +52,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, user: { signedIn: true } };
     case LOGOUT:
       return { ...state, user: { signedIn: false } };
+    case GET_USER:
+      return { ...state, user: payload };
     default:
       return state;
   }

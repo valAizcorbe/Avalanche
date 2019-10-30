@@ -40,5 +40,9 @@ module.exports = {
     } else {
       res.status(401).send("Password is incorrect");
     }
+  },
+  logout: async (req, res) => {
+    req.session.destroy;
+    res.sendStatus(200);
   }
 };

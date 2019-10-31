@@ -36,6 +36,7 @@ module.exports = {
     if (authenticated) {
       delete sameUser.user_password;
       req.session.user = sameUser;
+      console.log(sameUser);
       res.status(202).send(req.session.user);
     } else {
       res.status(401).send("Password is incorrect");

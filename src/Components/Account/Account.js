@@ -1,25 +1,47 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../../ducks/reducer";
+import Profile from "../Profile/Profile";
 
-const Account = () => {
-  const [profile, setProfile] = useState([]);
+const Account = props => {
+  const [user, setUser] = useState({});
+  // const [name, setName] = useState('');
+  // const [lastName, setLastName] = useState('');
+  // const [phone, setPhone]
 
   useEffect(() => {
-    axios
-      .get("/api/profile/:id")
-      .then(res => setProfile(res.data))
-      .catch(err => console.log(err));
-  }, []);
+    setUser(props.state.user);
+  }, [props.state.user.id]);
 
-  console.log(profile);
+  // console.log(props);
 
+  // const mappedUser = user.map((e, i) => {
+  //   return <p key={i}>{e}</p>;
+  // });
+
+  // console.log(user);
   return (
     <div>
-      <button>Insert debt Here</button>
-      <button>Logout</button>
-      <div></div>
+      {/* {user} */}
+      <Profile />
+      <Link to="/form">
+        <button>Insert debt Here</button>
+      </Link>
+      <Link to="/">
+        <button onClick={() => props.logout()}>Logout</button>
+      </Link>
     </div>
   );
 };
 
-export default Account;
+const mapStateToProps = state => {
+  return {
+    state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { logout }
+)(Account);

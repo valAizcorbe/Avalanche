@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import { login, updateUser } from "../../ducks/reducer";
+import "../../styles/Auth/auth.css";
 
 class Auth extends Component {
   constructor(props) {
@@ -18,19 +19,14 @@ class Auth extends Component {
   }
 
   handleLogin = () => {
-    axios
-      .post("/auth/login", {
-        emailLog: this.state.emailLog,
-        passwordLog: this.state.passwordLog
-      })
+    this.props
+      .login(this.state.emailLog, this.state.passwordLog)
       .then(res => {
         this.setState({
           emailLog: "",
           passwordLog: ""
         });
         this.props.history.push("/dashboard");
-        this.props.updateUser(res.data);
-        this.props.login();
       })
       .catch(err => console.log(err));
   };
@@ -77,8 +73,9 @@ class Auth extends Component {
       passwordLog
     } = this.state;
     return (
-      <div>
+      <div className="hole-box">
         <div className="login-box">
+          <h3>Log in</h3>
           <label>Email: </label>
           <input
             name="emailLog"
@@ -96,6 +93,7 @@ class Auth extends Component {
           <button onClick={this.handleLogin}>Login</button>
         </div>
         <div className="register-box">
+          <h3>Register</h3>
           <label>First Name:</label>
           <input
             name="firstName"

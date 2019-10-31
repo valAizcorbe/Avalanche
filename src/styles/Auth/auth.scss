@@ -1,0 +1,35 @@
+@mixin boxDefault() {
+  border: solid;
+  border-color: rgb(198, 206, 206);
+  width: 60vh;
+  font-size: 17px;
+  border-radius: 4px;
+}
+
+@mixin flex() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.hole-box {
+  background-color: cadetblue;
+  height: 100vh;
+  width: 100vw;
+  @include flex();
+  flex-direction: row;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.login-box {
+  @include boxDefault;
+  @include flex;
+}
+
+.register-box {
+  @include boxDefault;
+  @include flex;
+}

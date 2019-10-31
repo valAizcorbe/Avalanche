@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const initialState = {
   user: {
     id: 0,
@@ -29,10 +31,19 @@ export function getUser(userObj) {
   };
 }
 
-export function login() {
+export function login(emailLog, passwordLog) {
+  let sendMe = axios
+    .post("/auth/login", {
+      emailLog,
+      passwordLog
+    })
+    .then(response => {
+      return response.data;
+    });
+
   return {
     type: LOGIN,
-    payload: null
+    payload: sendMe
   };
 }
 
@@ -48,8 +59,8 @@ export default function reducer(state = initialState, action) {
   switch (type) {
     case UPDATE_USER:
       return { ...state, user: payload };
-    case LOGIN:
-      return { ...state, user: { signedIn: true } };
+    case LOGIN + "_FULFILLED":
+      return { ...state, user: payload };
     case LOGOUT:
       return { ...state, user: { signedIn: false } };
     case GET_USER:

@@ -1,0 +1,77 @@
+.hole-background {
+  background-color: cadetblue;
+  height: 100vh;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.first-box {
+  border: solid;
+  border-color: #c6cece;
+  width: 100vh;
+  font-size: 17px;
+  border-radius: 4px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.big-table {
+  border: solid;
+  border-color: #c6cece;
+  width: 100vh;
+  font-size: 17px;
+  border-radius: 4px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.button-auth {
+  background-color: #2d5c72;
+  color: #dfdfdf;
+  border: solid;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.different-style {
+  font-size: small;
+  font-style: oblique;
+  font-weight: bold;
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+}
+/*# sourceMappingURL=form.css.map */

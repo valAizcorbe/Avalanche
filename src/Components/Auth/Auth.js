@@ -90,7 +90,11 @@ class Auth extends Component {
             type="password"
             onChange={e => this.handleInputs(e)}
           />
-          <button onClick={this.handleLogin}>Login</button>
+          <br />
+          <button className="button-auth" onClick={this.handleLogin}>
+            Login
+          </button>
+          <br />
         </div>
         <div className="register-box">
           <h3>Register</h3>
@@ -121,7 +125,7 @@ class Auth extends Component {
             onChange={e => this.handleInputs(e)}
           />
 
-          <p>
+          <p className="different-style">
             If you want to receive FREE reminders via TEXT, please insert your
             phone number
           </p>
@@ -131,7 +135,11 @@ class Auth extends Component {
             value={phone}
             onChange={e => this.handleInputs(e)}
           />
-          <button onClick={this.handleRegister}>Register</button>
+          <br />
+          <button className="button-auth" onClick={this.handleRegister}>
+            Register
+          </button>
+          <br />
         </div>
       </div>
     );

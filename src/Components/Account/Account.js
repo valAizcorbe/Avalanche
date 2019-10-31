@@ -1,39 +1,44 @@
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { logout } from "../../ducks/reducer";
+import { logout, getUser } from "../../ducks/reducer";
 import Profile from "../Profile/Profile";
+// import useAxios from "axios-hooks";
 
-const Account = props => {
-  const [user, setUser] = useState({});
-  // const [name, setName] = useState('');
-  // const [lastName, setLastName] = useState('');
-  // const [phone, setPhone]
+class Account extends Component(props) {
+  constructor(props) {
+    super();
+    this.state = {
+      user: {}
+    };
+  }
 
-  useEffect(() => {
-    setUser(props.state.user);
-  }, [props.state.user.id]);
+  componentDidMount() {
+    this.props.getProfile();
+  }
 
-  // console.log(props);
-
-  // const mappedUser = user.map((e, i) => {
-  //   return <p key={i}>{e}</p>;
-  // });
+  // useEffect(() => {
+  //   setUser(props.state.user);
+  // }, [props.state.user.id]);
 
   // console.log(user);
-  return (
-    <div>
-      {/* {user} */}
-      <Profile />
-      <Link to="/form">
-        <button>Insert debt Here</button>
-      </Link>
-      <Link to="/">
-        <button onClick={() => props.logout()}>Logout</button>
-      </Link>
-    </div>
-  );
-};
+  render() {
+    return (
+      <div>
+        <h1>
+          Hello {user.user_name} {user.user_lastname}!
+        </h1>
+        <Profile />
+        <Link to="/form">
+          <button>Insert debt Here</button>
+        </Link>
+        <Link to="/">
+          <button onClick={() => props.logout()}>Logout</button>
+        </Link>
+      </div>
+    );
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -43,5 +48,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { logout }
+  { logout, getUser }
 )(Account);

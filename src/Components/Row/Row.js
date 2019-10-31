@@ -1,26 +1,15 @@
-import React, { Component } from "react";
-import "../../styles/Form/form.css";
-import Row from "../Row/Row";
+import React from "react";
 
-class Form extends Component {
+class Row extends React.Component {
   constructor() {
     super();
     this.state = {
-      rows: [""],
-      inputs: {
-        date: "",
-        amount: ""
-      }
+      balance: "",
+      type: "",
+      rate: "",
+      payment: ""
     };
   }
-
-  addRow = () => {
-    this.setState({
-      rows: [...this.state.rows, ""]
-    });
-  };
-
-  // save = id => {};
 
   handleInputs = e => {
     const { name, value } = e.target;
@@ -30,32 +19,10 @@ class Form extends Component {
   };
 
   render() {
-    const { date, amount } = this.state;
-    const { rows } = this.state;
-    const table = rows.map((element, i) => {
-      return <Row key={`row ${i}`} />;
-    });
-    console.log(this.state.rows);
+    let { balance, type, rate, payment } = this.state;
     return (
-      <form className="hole-background">
-        <div className="first-box">
-          <label>Date</label>
-          <input
-            onChange={e => this.handleInputs(e)}
-            value={date}
-            type="date"
-          />
-          <label>Extra Amount</label>
-          <input
-            onChange={e => this.handleInputs(e)}
-            value={amount}
-            type="number"
-            placeholder="$$$"
-          />
-        </div>
-        {table}
-        {/* shows the table  */}
-        {/* <table className="big-table">
+      <div>
+        <table className="big-table">
           <tbody>
             <tr>
               <td>Type</td>
@@ -66,6 +33,7 @@ class Form extends Component {
             <tr>
               <td id="cell0-0">
                 <input
+                  name="type"
                   onChange={e => this.handleInputs(e)}
                   list="type"
                   value={type}
@@ -82,6 +50,7 @@ class Form extends Component {
                   value={balance}
                   type="number"
                   placeholder="$$"
+                  name="balance"
                 />
               </td>
               <td>
@@ -90,6 +59,7 @@ class Form extends Component {
                   value={rate}
                   type="number"
                   placeholder="%"
+                  name="rate"
                 />
               </td>
               <td>
@@ -98,17 +68,16 @@ class Form extends Component {
                   value={payment}
                   type="number"
                   placeholder="$"
+                  name="payment"
                 />
               </td>
             </tr>
           </tbody>
-        </table> */}
-        <button onClick={this.addRow} className="button-type">
-          Add Row
-        </button>
-      </form>
+        </table>
+        <button>Delete</button>
+      </div>
     );
   }
 }
 
-export default Form;
+export default Row;

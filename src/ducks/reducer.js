@@ -24,10 +24,19 @@ export function updateUser(userObj) {
   };
 }
 
-export function getUser(userObj) {
+export function getUser(name, lastName, phone, id) {
+  let getProfile = axios
+    .get(`/api/profile/${id}`, {
+      name,
+      lastName,
+      phone
+    })
+    .then(res => {
+      return res.data;
+    });
   return {
     type: GET_USER,
-    payload: userObj
+    payload: getProfile
   };
 }
 
@@ -63,7 +72,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, user: payload };
     case LOGOUT:
       return { ...state, user: { signedIn: false } };
-    case GET_USER:
+    case GET_USER + "_FULFILLED":
       return { ...state, user: payload };
     default:
       return state;

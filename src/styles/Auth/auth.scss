@@ -6,7 +6,7 @@
   border-radius: 4px;
 }
 
-$backColor: cadetblue;
+$textColor: rgb(110, 142, 168);
 
 @mixin flex() {
   display: flex;
@@ -16,7 +16,6 @@ $backColor: cadetblue;
 }
 
 @mixin buttons() {
-  background-color: $backgroundColor;
   color: $textColor;
   border: solid;
   border-radius: 4px;
@@ -24,7 +23,6 @@ $backColor: cadetblue;
 }
 
 .hole-box {
-  background-color: $backColor;
   height: 100vh;
   width: 100vw;
   @include flex();

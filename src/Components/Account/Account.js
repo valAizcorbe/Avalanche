@@ -5,16 +5,16 @@ import { logout, getUser } from "../../ducks/reducer";
 import Profile from "../Profile/Profile";
 // import useAxios from "axios-hooks";
 
-class Account extends Component(props) {
+class Account extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.state = {
       user: {}
     };
   }
 
   componentDidMount() {
-    this.props.getProfile();
+    this.props.getUser();
   }
 
   // useEffect(() => {
@@ -23,17 +23,18 @@ class Account extends Component(props) {
 
   // console.log(user);
   render() {
+    let { user } = this.state;
     return (
       <div>
         <h1>
-          Hello {user.user_name} {user.user_lastname}!
+          Hello {user.user_name} {user.user_lastName}!
         </h1>
         <Profile />
         <Link to="/form">
           <button>Insert debt Here</button>
         </Link>
         <Link to="/">
-          <button onClick={() => props.logout()}>Logout</button>
+          <button onClick={() => this.props.logout()}>Logout</button>
         </Link>
       </div>
     );

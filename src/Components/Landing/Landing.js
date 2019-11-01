@@ -1,8 +1,9 @@
 import React from "react";
+import "../../styles/Landing/landing.css";
 
 function Landing() {
   return (
-    <div>
+    <div className="background">
       <h2>Why Avalanche?</h2>
       <p>
         In the debt avalanche method, you pay your debts from highest interest

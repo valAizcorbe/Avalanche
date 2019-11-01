@@ -4,6 +4,7 @@
   width: 60vh;
   font-size: 17px;
   border-radius: 4px;
+  color: $textColor;
 }
 
 $textColor: rgb(110, 142, 168);
@@ -44,4 +45,14 @@ $textColor: rgb(110, 142, 168);
 
 .button-auth {
   @include buttons();
+}
+
+.different-style {
+  font-size: small;
+  font-style: oblique;
+  font-weight: bold;
+  padding: 15px;
+  display: flex;
+  align-content: center;
+  text-align: center;
 }

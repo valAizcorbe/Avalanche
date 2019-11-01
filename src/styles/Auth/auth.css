@@ -30,6 +30,7 @@
   width: 60vh;
   font-size: 17px;
   border-radius: 4px;
+  color: #6e8ea8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -51,6 +52,7 @@
   width: 60vh;
   font-size: 17px;
   border-radius: 4px;
+  color: #6e8ea8;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -71,5 +73,18 @@
   border: solid;
   border-radius: 4px;
   padding: 10px;
+}
+
+.different-style {
+  font-size: small;
+  font-style: oblique;
+  font-weight: bold;
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
 }
 /*# sourceMappingURL=auth.css.map */

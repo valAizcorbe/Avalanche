@@ -1,5 +1,16 @@
 $textColor: rgb(110, 142, 168);
 
+@mixin boxDefault() {
+  border: solid;
+  border-color: rgb(198, 206, 206);
+  width: 60vh;
+  font-size: 17px;
+  border-radius: 4px;
+  color: $textColor;
+}
+
+$textColor: rgb(110, 142, 168);
+
 @mixin flex() {
   display: flex;
   justify-content: center;
@@ -7,24 +18,11 @@ $textColor: rgb(110, 142, 168);
   flex-direction: column;
 }
 
-@mixin boxDefault() {
-  border: solid;
-  border-color: rgb(198, 206, 206);
-  color: $textColor;
-  width: 100vh;
-  font-size: 17px;
-  border-radius: 4px;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  box-sizing: border-box;
-}
-
 @mixin buttons() {
-  background-color: $backgroundColor;
   color: $textColor;
   border: solid;
   border-radius: 4px;
-  padding: 8px;
+  padding: 10px;
 }
 
 .hole-background {
@@ -34,6 +32,7 @@ $textColor: rgb(110, 142, 168);
   justify-content: space-evenly;
   box-sizing: border-box;
   flex-wrap: wrap;
+  color: $textColor;
 }
 
 .first-box {
@@ -46,14 +45,4 @@ $textColor: rgb(110, 142, 168);
 
 .button-auth {
   @include buttons();
-}
-
-.different-style {
-  font-size: small;
-  font-style: oblique;
-  font-weight: bold;
-  padding: 15px;
-  display: flex;
-  align-content: center;
-  text-align: center;
 }

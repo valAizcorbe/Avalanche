@@ -1,5 +1,4 @@
 .hole-background {
-  background-color: cadetblue;
   height: 100vh;
   width: 100vw;
   display: -webkit-box;
@@ -22,56 +21,31 @@
           box-sizing: border-box;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  color: #6e8ea8;
 }
 
 .first-box {
   border: solid;
   border-color: #c6cece;
-  width: 100vh;
+  width: 60vh;
   font-size: 17px;
   border-radius: 4px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  color: #6e8ea8;
 }
 
 .big-table {
   border: solid;
   border-color: #c6cece;
-  width: 100vh;
+  width: 60vh;
   font-size: 17px;
   border-radius: 4px;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  color: #6e8ea8;
 }
 
 .button-auth {
-  background-color: #2d5c72;
-  color: #dfdfdf;
+  color: #6e8ea8;
   border: solid;
   border-radius: 4px;
-  padding: 8px;
-}
-
-.different-style {
-  font-size: small;
-  font-style: oblique;
-  font-weight: bold;
-  padding: 15px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-line-pack: center;
-      align-content: center;
-  text-align: center;
+  padding: 10px;
 }
 /*# sourceMappingURL=form.css.map */

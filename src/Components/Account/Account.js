@@ -1,39 +1,39 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout, getUser } from "../../ducks/reducer";
-import Profile from "../Profile/Profile";
-// import useAxios from "axios-hooks";
+import "../../styles/Account/account.css";
 
-class Account extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: {}
-    };
-  }
+function Account(props) {
+  // let { id, name, lastName, phone } = props.redux.reducer.user;
 
-  componentDidMount() {
-    this.props.getUser();
-  }
+  // componentDidMount = () => {
+  //   props.getUser();
+  // };
 
-  render() {
-    let { user } = this.state;
-    return (
+  // getUser = (id, name, lastName, phone) => {
+  //   props.redux.reducer.getUser(id, name, lastName, phone);
+  // };
+
+  // let { user } = props.redux;
+  return (
+    <div className="account-background">
+      {/* <Profile /> */}
+      <Link to="/form">
+        <button>Insert debt Here</button>
+      </Link>
+      <Link to="/">
+        <button onClick={() => this.props.logout()}>Logout</button>
+      </Link>
       <div>
         <h1>
-          Hello {user.user_name} {user.user_lastName}!
+          Welcome
+          {/* \{props.redux.user.name} {props.redux.user.lastName} */}
         </h1>
-        <Profile />
-        <Link to="/form">
-          <button>Insert debt Here</button>
-        </Link>
-        <Link to="/">
-          <button onClick={() => this.props.logout()}>Logout</button>
-        </Link>
+        <button>Edit Info</button>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 const mapStateToProps = state => {

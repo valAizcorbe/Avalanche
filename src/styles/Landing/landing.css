@@ -22,7 +22,7 @@ h1 {
   text-align: justify;
 }
 
-img {
+.img {
   border-radius: 5px;
   display: -webkit-box;
   display: -ms-flexbox;

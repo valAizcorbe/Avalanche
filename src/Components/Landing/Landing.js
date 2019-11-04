@@ -42,11 +42,13 @@ function Landing() {
           money on interest.
         </article>
       </p>
-      <img
-        src="http://hugo.debtrescue.co.za/blog/wp-content/uploads/2019/05/Debt-Avalanche-Method.jpg"
-        width="300px"
-        alt="man skiing"
-      />
+      <div className="img">
+        <img
+          src="http://hugo.debtrescue.co.za/blog/wp-content/uploads/2019/05/Debt-Avalanche-Method.jpg"
+          width="300px"
+          alt="man skiing"
+        />
+      </div>
       <button>Register or Login</button>
     </div>
   );

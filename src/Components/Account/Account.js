@@ -17,11 +17,6 @@ class Account extends Component {
     this.props.getUser();
   }
 
-  // useEffect(() => {
-  //   setUser(props.state.user);
-  // }, [props.state.user.id]);
-
-  // console.log(user);
   render() {
     let { user } = this.state;
     return (

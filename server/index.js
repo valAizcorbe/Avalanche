@@ -4,7 +4,7 @@ const massive = require("massive");
 const session = require("express-session");
 const { CONNECTION_STRING, SERVER_PORT, SESSION_SECRET } = process.env;
 const authCtrl = require("./controllers/authController");
-const ctrl = require("./controllers/profileController");
+const ctrl = require("./controllers/mainController");
 const app = express();
 const port = SERVER_PORT;
 app.use(express.json());
@@ -29,6 +29,7 @@ app.use(
 
 //controllers
 app.get("/api/profile/:id", ctrl.getProfile);
+app.post("/api/form", ctrl.addForm);
 //auth controller
 
 app.post("/auth/login", authCtrl.login);

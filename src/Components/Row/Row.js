@@ -1,13 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import { saveInputs, deleteRow } from "../../ducks/dataReducer";
 
 class Row extends React.Component {
   constructor() {
     super();
     this.state = {
-      balance: "",
+      balance: 0,
       type: "",
-      rate: "",
-      payment: ""
+      rate: 0.0,
+      payment: 0
     };
   }
 
@@ -18,7 +20,29 @@ class Row extends React.Component {
     });
   };
 
+  deleteRow = e => {
+    e.preventDefault();
+    this.props.deleteRow();
+  };
+
+  saveInputs = e => {
+    e.preventDefault();
+    console.log("hit");
+    let { type, balance, rate, payment } = this.state;
+    this.props.saveInputs(
+      this.props.redux.dataReducer.id,
+      this.props.redux.dataReducer.data.date,
+      this.props.redux.dataReducer.data.amount,
+      type,
+      balance,
+      rate,
+      payment
+    );
+    // console.log(this.props);
+  };
+
   render() {
+    console.log(this.props);
     let { balance, type, rate, payment } = this.state;
     return (
       <div>
@@ -74,10 +98,20 @@ class Row extends React.Component {
             </tr>
           </tbody>
         </table>
-        <button>Delete</button>
+        <button onClick={e => this.deleteRow(e)}>Delete</button>
+        <button onClick={e => this.saveInputs(e)}>Save</button>
       </div>
     );
   }
 }
 
-export default Row;
+const mapStateToProps = state => {
+  return {
+    redux: state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { saveInputs, deleteRow }
+)(Row);

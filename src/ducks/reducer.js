@@ -74,6 +74,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, user: { signedIn: false } };
     case GET_USER + "_FULFILLED":
       return { ...state, user: payload };
+
     default:
       return state;
   }

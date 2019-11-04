@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "../../styles/Form/form.css";
+import { connect } from "react-redux";
+import { addRow } from "../../ducks/dataReducer";
 import Row from "../Row/Row";
 
 class Form extends Component {
   constructor() {
     super();
     this.state = {
-      rows: [""],
       inputs: {
         date: "",
         amount: ""
@@ -14,13 +15,12 @@ class Form extends Component {
     };
   }
 
-  addRow = () => {
-    this.setState({
-      rows: [...this.state.rows, ""]
-    });
+  addRow = e => {
+    e.preventDefault();
+    // console.log("hit");
+    this.props.addRow();
+    // console.log(this.props);
   };
-
-  // save = id => {};
 
   handleInputs = e => {
     const { name, value } = e.target;
@@ -30,12 +30,21 @@ class Form extends Component {
   };
 
   render() {
+    // console.log(this.props);
     const { date, amount } = this.state;
-    const { rows } = this.state;
+    const { rows } = this.props.redux.dataReducer;
     const table = rows.map((element, i) => {
-      return <Row key={`row ${i}`} />;
+      return (
+        <Row
+          key={`rows ${i}`}
+          i={i}
+          amount={this.state.amount}
+          date={this.state.date}
+        />
+      );
     });
-    console.log(this.state.rows);
+    // console.log(this.props.redux.rows);
+    // console.log(table, "table");
     return (
       <form className="hole-background">
         <div className="first-box">
@@ -55,60 +64,22 @@ class Form extends Component {
         </div>
         {table}
         {/* shows the table  */}
-        {/* <table className="big-table">
-          <tbody>
-            <tr>
-              <td>Type</td>
-              <td>Remaining Balance</td>
-              <td>Interest Rate</td>
-              <td>Minimum Payment</td>
-            </tr>
-            <tr>
-              <td id="cell0-0">
-                <input
-                  onChange={e => this.handleInputs(e)}
-                  list="type"
-                  value={type}
-                />
-                <datalist id="type">
-                  <option value="Loan" />
-                  <option value="Credit Card" />
-                  <option value="Other" />
-                </datalist>
-              </td>
-              <td>
-                <input
-                  onChange={e => this.handleInputs(e)}
-                  value={balance}
-                  type="number"
-                  placeholder="$$"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={e => this.handleInputs(e)}
-                  value={rate}
-                  type="number"
-                  placeholder="%"
-                />
-              </td>
-              <td>
-                <input
-                  onChange={e => this.handleInputs(e)}
-                  value={payment}
-                  type="number"
-                  placeholder="$"
-                />
-              </td>
-            </tr>
-          </tbody>
-        </table> */}
-        <button onClick={this.addRow} className="button-type">
+        <button onClick={e => this.addRow(e)} className="button-type">
           Add Row
         </button>
+        <button>Calculate</button>
       </form>
     );
   }
 }
 
-export default Form;
+const mapStateToProps = state => {
+  return {
+    redux: state
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  { addRow }
+)(Form);

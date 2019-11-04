@@ -6,10 +6,10 @@ class Row extends React.Component {
   constructor() {
     super();
     this.state = {
-      balance: 0,
-      type: "",
-      rate: 0.0,
-      payment: 0
+      balance: [0],
+      type: [""],
+      rate: [0.0],
+      payment: [0]
     };
   }
 
@@ -28,11 +28,12 @@ class Row extends React.Component {
   saveInputs = e => {
     e.preventDefault();
     console.log("hit");
+    console.log(this.props.redux.dataReducer);
     let { type, balance, rate, payment } = this.state;
     this.props.saveInputs(
-      this.props.redux.dataReducer.id,
-      this.props.redux.dataReducer.data.date,
-      this.props.redux.dataReducer.data.amount,
+      this.props.redux.reducer.user.user_id,
+      this.props.date,
+      this.props.amount,
       type,
       balance,
       rate,

@@ -1,7 +1,7 @@
 module.exports = {
-  getProfile: (req, res) => {
+  getUser: (req, res) => {
     const { id, firstName, lastName, phone } = req.params;
-    console.log(id, "rtrrrr");
+    // console.log(id, "rtrrrr");
     const db = req.app.get("db");
     db.get_profile(id, firstName, lastName, phone)
       .then(data => res.status(200).send(data))

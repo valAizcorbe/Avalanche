@@ -28,8 +28,9 @@ app.use(
 );
 
 //controllers
-app.get("/api/profile/:id", ctrl.getProfile);
+app.get("/api/profile/:id", ctrl.getUser);
 app.post("/api/form", ctrl.addForm);
+
 //auth controller
 
 app.post("/auth/login", authCtrl.login);

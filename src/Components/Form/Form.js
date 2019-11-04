@@ -51,6 +51,7 @@ class Form extends Component {
           <label>Date</label>
           <input
             onChange={e => this.handleInputs(e)}
+            name="date"
             value={date}
             type="date"
           />
@@ -58,6 +59,7 @@ class Form extends Component {
           <input
             onChange={e => this.handleInputs(e)}
             value={amount}
+            name="amount"
             type="number"
             placeholder="$$$"
           />

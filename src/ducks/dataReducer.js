@@ -3,15 +3,15 @@ import axios from "axios";
 const initialState = {
   rows: [""],
   data: [
-    {
-      id: 0,
-      date: new Date(),
-      amount: 0,
-      type: "",
-      balance: 0,
-      rate: 0.0,
-      payment: 0
-    }
+    // {
+    //   id: 0,
+    //   date: "",
+    //   amount: 0,
+    //   type: "",
+    //   balance: 0,
+    //   rate: 0.0,
+    //   payment: 0
+    // }
   ]
 };
 
@@ -62,7 +62,7 @@ export default function dataReducer(state = initialState, action) {
       console.log(state.rows);
       return { ...state, rows: [...state.rows, payload] };
     case SAVE_INPUTS + "_FULFILLED":
-      return { ...state, data: payload };
+      return { ...state, data: [...state.data, payload] };
     case DELETE_ROW:
       return { ...state, rows: payload };
     default:

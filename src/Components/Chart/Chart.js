@@ -13,13 +13,6 @@ class Chart extends Component {
             label: "",
             data: [10000, 8000, 5000, 3000]
           }
-        ],
-        backgroundColor: [
-          "rgba(110, 142, 168)",
-          "rgba(110, 142, 123)",
-          "rgba(110, 142, 168)",
-          "rgba(110, 142, 168)",
-          "rgba(110, 142, 168)"
         ]
       }
     };

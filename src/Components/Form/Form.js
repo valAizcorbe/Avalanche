@@ -11,7 +11,7 @@ class Form extends Component {
     this.state = {
       inputs: {
         date: "",
-        amount: ""
+        amount: 0
       }
     };
   }
@@ -49,13 +49,27 @@ class Form extends Component {
     return (
       <form className="hole-background">
         <div className="first-box">
-          <label>Date</label>
+          <label>Month</label>
           <input
-            onChange={e => this.handleInputs(e)}
             name="date"
+            onChange={e => this.handleInputs(e)}
+            list="date"
             value={date}
-            type="date"
           />
+          <datalist id="date">
+            <option value="January" />
+            <option value="February" />
+            <option value="March" />
+            <option value="April" />
+            <option value="May" />
+            <option value="June" />
+            <option value="July" />
+            <option value="August" />
+            <option value="September" />
+            <option value="October" />
+            <option value="November" />
+            <option value="December" />
+          </datalist>
           <label>Extra Amount</label>
           <input
             onChange={e => this.handleInputs(e)}

@@ -9,7 +9,7 @@ class Row extends React.Component {
       balance: [0],
       type: [""],
       rate: [0.0],
-      payment: [0]
+      payment: 0
     };
   }
 
@@ -45,7 +45,7 @@ class Row extends React.Component {
 
   render() {
     console.log(this.props);
-    let { balance, type, rate, payment } = this.state;
+    let { balance, type, rate } = this.state;
     return (
       <div>
         <table className="big-table">
@@ -88,15 +88,7 @@ class Row extends React.Component {
                   name="rate"
                 />
               </td>
-              <td>
-                <input
-                  onChange={e => this.handleInputs(e)}
-                  value={payment}
-                  type="number"
-                  placeholder="$"
-                  name="payment"
-                />
-              </td>
+              <td>{(rate / 100) * 0.07 * balance}</td>
             </tr>
           </tbody>
         </table>

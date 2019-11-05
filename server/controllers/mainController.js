@@ -10,6 +10,7 @@ module.exports = {
   addForm: (req, res) => {
     const db = req.app.get("db");
     const { id, date, amount, type, balance, rate, payment } = req.body;
+    console.log(req.body);
     db.add_form(id, date, amount, type, balance, rate, payment)
       .then(data => res.status(200).send(data))
       .catch(err => console.log(err));

@@ -18,6 +18,7 @@ const initialState = {
 const DELETE_ROW = "DELETE_ROW";
 const ADD_ROW = "ADD_ROW";
 const SAVE_INPUTS = "SAVE_INPUTS";
+const GET_DATA = "GET_DATA";
 
 export function addRow() {
   // console.log("hey");
@@ -27,10 +28,13 @@ export function addRow() {
   };
 }
 
-export function deleteRow() {
+export function deleteRow(id) {
+  console.log(id);
+
+  // console.log(newRow);
   return {
     type: DELETE_ROW,
-    payload: null
+    payload: id
   };
 }
 
@@ -55,6 +59,18 @@ export function saveInputs(id, date, amount, type, balance, rate, payment) {
   };
 }
 
+export function getData(id, date, amount, type, balance, rate, payment) {
+  let data = axios
+    .get("/api/chart", { id, date, amount, type, balance, rate, payment })
+    .then(res => {
+      return res.data;
+    });
+  return {
+    type: GET_DATA,
+    payload: data
+  };
+}
+
 export default function dataReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
@@ -64,7 +80,10 @@ export default function dataReducer(state = initialState, action) {
     case SAVE_INPUTS + "_FULFILLED":
       return { ...state, data: [...state.data, payload] };
     case DELETE_ROW:
-      return { ...state, rows: payload };
+      state.rows.splice(payload, 1);
+      return { ...state };
+    case GET_DATA + "_FULFILLED":
+      return { ...state, data: [...state.data, payload] };
     default:
       return state;
   }

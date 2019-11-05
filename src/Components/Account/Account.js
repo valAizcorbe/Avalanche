@@ -25,7 +25,7 @@ class Account extends React.Component {
 
   // let { user } = props.redux;
   render() {
-    // const { name, lastName, phone } = this.state;
+    let { name, lastName, phone } = this.props.redux.reducer.user;
     return (
       <section className="account-background">
         {/* {users.map((element, id) => {
@@ -38,7 +38,7 @@ class Account extends React.Component {
           );
         })} */}
         <h1>
-          {/* Welcome {name} {lastName} */}
+          Welcome {name} {lastName}
           {/* <Profile /> */}
         </h1>
         {/* <p>Phone Number: {phone}</p> */}

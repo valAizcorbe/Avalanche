@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../../styles/Form/form.css";
 import { connect } from "react-redux";
 import { addRow } from "../../ducks/dataReducer";
+import { Link } from "react-router-dom";
 import Row from "../Row/Row";
 
 class Form extends Component {
@@ -30,7 +31,7 @@ class Form extends Component {
   };
 
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { date, amount } = this.state;
     const { rows } = this.props.redux.dataReducer;
     const table = rows.map((element, i) => {
@@ -69,7 +70,9 @@ class Form extends Component {
         <button onClick={e => this.addRow(e)} className="button-type">
           Add Row
         </button>
-        <button>Calculate</button>
+        <Link to="/chart">
+          <button>Calculate</button>
+        </Link>
       </form>
     );
   }

@@ -21,8 +21,9 @@ class Row extends React.Component {
   };
 
   deleteRow = e => {
+    console.log("delete function");
     e.preventDefault();
-    this.props.deleteRow();
+    this.props.deleteRow(this.props.i);
   };
 
   saveInputs = e => {

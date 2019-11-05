@@ -5,6 +5,7 @@ import Dashboard from "./Components/Dashboard/Dashboard";
 import Auth from "./Components/Auth/Auth";
 import Landing from "./Components/Landing/Landing";
 import Form from "./Components/Form/Form";
+import Chart from "./Components/Chart/Chart";
 
 export default (
   <Switch>
@@ -13,5 +14,6 @@ export default (
     <Route path="/account" component={Account} />
     <Route path="/authentication" component={Auth} />
     <Route path="/form" component={Form} />
+    <Route path="/chart" component={Chart} />
   </Switch>
 );

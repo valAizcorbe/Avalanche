@@ -31,7 +31,7 @@ class Form extends Component {
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     const { date, amount } = this.state;
     const { rows } = this.props.redux.dataReducer;
     const table = rows.map((element, i) => {

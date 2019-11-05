@@ -39,7 +39,7 @@ export function deleteRow(id) {
 }
 
 export function saveInputs(id, date, amount, type, balance, rate, payment) {
-  console.log("save inputs works");
+  // console.log("save inputs works");
   let save = axios
     .post(`/api/form`, {
       id,

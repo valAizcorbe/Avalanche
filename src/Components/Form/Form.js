@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { addRow } from "../../ducks/dataReducer";
 import { Link } from "react-router-dom";
 import Row from "../Row/Row";
+import axios from "axios";
 
 class Form extends Component {
   constructor() {
@@ -30,8 +31,17 @@ class Form extends Component {
     });
   };
 
+  handleResult = e => {
+    e.preventDefault();
+    let data = this.props.redux.dataReducer.data;
+    let rows = this.props.i;
+    axios.post("/api/chartData", { data, rows }).then(res => {
+      console.log(res);
+    });
+  };
+
   render() {
-    // console.log(this.props);
+    console.log(this.props);
     const { date, amount } = this.state;
     const { rows } = this.props.redux.dataReducer;
     const table = rows.map((element, i) => {
@@ -85,7 +95,7 @@ class Form extends Component {
           Add Row
         </button>
         <Link to="/chart">
-          <button>Calculate</button>
+          <button onClick={e => this.handleResult(e)}>Calculate</button>
         </Link>
       </form>
     );

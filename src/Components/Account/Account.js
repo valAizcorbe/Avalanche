@@ -2,46 +2,35 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout, getUser } from "../../ducks/reducer";
-// import Profile from "../Profile/Profile";
+
 import "../../styles/Account/account.css";
 
 class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: { name: "", lastName: "", phone: "" }
-
-      // id: 0,
-      // editing: false,
-      // newName: "",
-      // newLastName: "",
-      // newPhone: "",
-      // newPicture: ""
+      user: [],
+      name: "",
+      lastName: "",
+      phone: ""
     };
   }
-  componentDidMount = () => {
-    this.props.getUser();
-  };
 
-  // let { user } = props.redux;
+  // editInfo = id => {
+  //   const { user } = this.props.user;
+  // };
+
   render() {
-    // let { name, lastName, phone } = this.props.redux.reducer.user;
+    const { user } = this.props.user;
+
     return (
       <section className="account-background">
-        {/* {users.map((element, id) => {
-          return (
-            <div>
-              <h2>{name}</h2>
-              <h2>{lastName}</h2>
-              <h2>{phone}</h2>
-            </div>
-          );
-        })} */}
-        <h1>
-          {/* Welcome {name} {lastName} */}
-          {/* <Profile /> */}
-        </h1>
-        {/* <p>Phone Number: {phone}</p> */}
+        <div>
+          <h2>
+            Welcome {user.user_name} {user.user_lastname} !
+          </h2>
+          <h2>Phone Number: {user.user_phone}</h2>
+        </div>
         <Link to="/form">
           <button>Insert debt Here</button>
         </Link>
@@ -56,11 +45,11 @@ class Account extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+function mapStateToProps(state) {
   return {
-    state
+    user: state.reducer
   };
-};
+}
 
 export default connect(
   mapStateToProps,

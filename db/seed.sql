@@ -4,7 +4,7 @@ user_email varchar(100),
 user_password varchar(250),
 user_name varchar(100),
 user_lastname varchar(150),
--- user_picture textr
+user_picture textr
 user_phone int
 );
 
@@ -15,7 +15,7 @@ amount decimal(10, 2),
 type_of_debt varchar(20),
 balance decimal(10, 2),
 rate decimal(10, 2),
-payment integer
+payment decimal(10,2)
 );
 
 insert into users (

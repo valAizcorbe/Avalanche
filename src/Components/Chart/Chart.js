@@ -8,12 +8,7 @@ class Chart extends Component {
     this.state = {
       chartData: {
         labels: [],
-        datasets: [
-          {
-            label: "",
-            data: [10000, 8000, 5000, 3000]
-          }
-        ]
+        datasets: []
       }
     };
   }
@@ -26,7 +21,7 @@ class Chart extends Component {
           options={{
             title: {
               display: true,
-              text: "{this.props.redux.dataReducer.type}",
+              text: "chart",
               fontSize: 25
             },
             legend: {

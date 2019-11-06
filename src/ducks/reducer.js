@@ -16,6 +16,7 @@ const LOGIN = "LOGIN";
 const LOGOUT = "LOGOUT";
 const UPDATE_USER = "UPDATE_USER";
 const GET_USER = "GET_USER";
+const EDIT_INFO = "EDIT_INFO";
 
 export function updateUser(userObj) {
   return {
@@ -24,21 +25,25 @@ export function updateUser(userObj) {
   };
 }
 
-export function getUser(name, lastName, phone, id) {
-  let getProfile = axios
-    .get(`/api/profile/${id}`, {
-      name,
-      lastName,
-      phone
-    })
-    .then(res => {
-      return res.data;
-    });
+export function getUser(id) {
+  let getProfile = axios.get(`/api/profile/${id}`).then(res => {
+    return res.data;
+  });
   return {
     type: GET_USER,
     payload: getProfile
   };
 }
+
+export const editInfo = (id, user_name, user_lastname, user_phone) => {
+  let data = axios
+    .put(`/api/profile/${id}`, { user_name, user_lastname, user_phone })
+    .then(res => res.data);
+  return {
+    type: EDIT_INFO,
+    payload: data
+  };
+};
 
 export function login(emailLog, passwordLog) {
   let sendMe = axios
@@ -74,7 +79,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, user: { signedIn: false } };
     case GET_USER + "_FULFILLED":
       return { ...state, user: payload };
-
+    case EDIT_INFO + "_FULFILLED":
+      return { user: payload };
     default:
       return state;
   }

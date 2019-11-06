@@ -8,7 +8,8 @@ class Row extends React.Component {
     this.state = {
       balance: [0],
       type: [""],
-      rate: [0.0]
+      rate: [0.0],
+      payment: 0
     };
   }
 
@@ -45,8 +46,8 @@ class Row extends React.Component {
   render() {
     console.log(this.props);
     let { balance, type, rate } = this.state;
-    let payment = (rate / 100) * 0.07 * balance;
-    console.log(payment);
+    this.state.payment = (rate / 100) * 0.07 * balance;
+    console.log(this.state.payment);
     return (
       <div>
         <table className="big-table">
@@ -89,7 +90,7 @@ class Row extends React.Component {
                   name="rate"
                 />
               </td>
-              <td>{payment}</td>
+              <td>{this.state.payment}</td>
             </tr>
           </tbody>
         </table>

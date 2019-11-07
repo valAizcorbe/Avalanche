@@ -7,6 +7,9 @@ $textColor: rgb(110, 142, 168);
 
 .background {
   color: $textColor;
+  display: flex;
+  flex-wrap: wrap;
+  @include flex();
 }
 
 h1 {
@@ -22,6 +25,7 @@ h3 {
   flex-direction: column;
   padding: 40px;
   font-size: 12px;
+  flex-wrap: wrap;
 }
 
 .text {
@@ -31,6 +35,7 @@ h3 {
   justify-content: center;
   padding: 3%;
   text-align: justify;
+  @include flex();
 }
 
 .box {
@@ -43,4 +48,5 @@ h3 {
   display: flex;
   justify-content: center;
   align-self: center;
+  @include flex();
 }

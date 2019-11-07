@@ -39,7 +39,6 @@ export function deleteRow(id) {
 }
 
 export function saveInputs(id, date, amount, type, balance, rate, payment) {
-  // console.log("save inputs works");
   let save = axios
     .post(`/api/form`, {
       id,
@@ -51,17 +50,41 @@ export function saveInputs(id, date, amount, type, balance, rate, payment) {
       payment
     })
     .then(res => {
+      console.log(res.data);
+      console.log(typeof res.data);
+
       return res.data;
     });
+  console.log(typeof save, save);
   return {
     type: SAVE_INPUTS,
     payload: save
   };
 }
 
-export function getData(id, date, amount, type, balance, rate, payment) {
+export function getData(
+  id,
+  date,
+  amount,
+  type,
+  balance,
+  rate,
+  payment,
+  savings,
+  disposable
+) {
   let data = axios
-    .get("/api/chart", { id, date, amount, type, balance, rate, payment })
+    .get("/api/chart", {
+      id,
+      date,
+      amount,
+      type,
+      balance,
+      rate,
+      payment,
+      savings,
+      disposable
+    })
     .then(res => {
       return res.data;
     });
@@ -78,7 +101,7 @@ export default function dataReducer(state = initialState, action) {
       console.log(state.rows);
       return { ...state, rows: [...state.rows, payload] };
     case SAVE_INPUTS + "_FULFILLED":
-      return { ...state, data: [...state.data, payload] };
+      return { ...state, data: [...state.data, payload[0]] };
     case DELETE_ROW:
       state.rows.splice(payload, 1);
       return { ...state };

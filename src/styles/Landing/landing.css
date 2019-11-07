@@ -1,5 +1,17 @@
 .background {
   color: #6e8ea8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 h1 {
@@ -34,6 +46,8 @@ h3 {
           flex-direction: column;
   padding: 40px;
   font-size: 12px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .text {
@@ -50,6 +64,9 @@ h3 {
           justify-content: center;
   padding: 3%;
   text-align: justify;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .box {
@@ -75,5 +92,10 @@ h3 {
           justify-content: center;
   -ms-flex-item-align: center;
       align-self: center;
+  display: flex;
+  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 /*# sourceMappingURL=landing.css.map */

@@ -34,7 +34,8 @@ class Form extends Component {
   handleResult = e => {
     e.preventDefault();
     let data = this.props.redux.dataReducer.data;
-    let rows = this.props.i;
+    let rows = this.props.redux.dataReducer.rows.length - 1;
+    // console.log(rows);
     axios.post("/api/chartData", { data, rows }).then(res => {
       console.log(res);
     });
@@ -85,8 +86,8 @@ class Form extends Component {
             onChange={e => this.handleInputs(e)}
             value={amount}
             name="amount"
-            type="number"
             placeholder="$$$"
+            type="number"
           />
         </div>
         {table}

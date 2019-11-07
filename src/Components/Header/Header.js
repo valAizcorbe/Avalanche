@@ -5,14 +5,17 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <header className="header">
-      <h1>Avalanche</h1>
-
-      <Link to="/">
-        <button className="header-button">Home</button>
-      </Link>
-      <Link to="/authentication">
-        <button className="header-button">Register</button>
-      </Link>
+      <div className="logo">
+        <h1>Avalanche</h1>
+      </div>
+      <div className="links">
+        <Link to="/">
+          <button className="header-button">Home</button>
+        </Link>
+        <Link to="/authentication">
+          <button className="header-button">Get Started</button>
+        </Link>
+      </div>
     </header>
   );
 }

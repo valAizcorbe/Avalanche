@@ -1,28 +1,41 @@
 $backgroundColor: rgb(45, 92, 114);
 $textColor: rgb(223, 223, 223);
 
-@mixin flex() {
+@mixin flexHeader() {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: space-around;
 }
 
 header {
-  @include flex();
+  @include flexHeader();
   color: $textColor;
   background: $backgroundColor;
   width: 100vw;
-  align-items: space-around;
+
   h1 {
     font-weight: bolder;
   }
   button {
+    @include flexHeader();
     background: $backgroundColor;
     border: none;
     color: $textColor;
+    size: 10px;
 
     &:hover {
       font-size: 20px;
     }
   }
+}
+
+.links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  justify-content: space-around;
 }

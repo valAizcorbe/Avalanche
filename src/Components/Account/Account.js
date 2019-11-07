@@ -16,16 +16,12 @@ class Account extends React.Component {
     };
   }
 
-  // editInfo = id => {
-  //   const { user } = this.props.user;
-  // };
-
   render() {
     const { user } = this.props.user;
 
     return (
       <section className="account-background">
-        <div>
+        <div className="info">
           <h2>
             Welcome {user.user_name} {user.user_lastname} !
           </h2>
@@ -37,9 +33,6 @@ class Account extends React.Component {
         <Link to="/">
           <button onClick={() => this.props.logout()}>Logout</button>
         </Link>
-        <div>
-          <button>Edit Info</button>
-        </div>
       </section>
     );
   }

@@ -5,15 +5,12 @@ header {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  color: #dfdfdf;
-  background: #2d5c72;
-  width: 100vw;
   -webkit-box-align: space-around;
       -ms-flex-align: space-around;
           align-items: space-around;
+  color: #dfdfdf;
+  background: #2d5c72;
+  width: 100vw;
 }
 
 header h1 {
@@ -21,12 +18,43 @@ header h1 {
 }
 
 header button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: space-around;
+      -ms-flex-align: space-around;
+          align-items: space-around;
   background: #2d5c72;
   border: none;
   color: #dfdfdf;
+  size: 10px;
 }
 
 header button:hover {
   font-size: 20px;
+}
+
+.links {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 /*# sourceMappingURL=header.css.map */

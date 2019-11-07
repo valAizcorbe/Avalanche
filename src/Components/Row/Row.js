@@ -6,9 +6,9 @@ class Row extends React.Component {
   constructor() {
     super();
     this.state = {
-      balance: [0],
+      balance: 0,
       type: [""],
-      rate: [0.0],
+      rate: 0.0,
       payment: 0
     };
   }
@@ -28,7 +28,7 @@ class Row extends React.Component {
 
   saveInputs = e => {
     e.preventDefault();
-    console.log("hit");
+    // console.log("hit");
     console.log(this.props.redux.dataReducer);
     let { type, balance, rate, payment } = this.state;
     this.props.saveInputs(
@@ -40,14 +40,13 @@ class Row extends React.Component {
       rate,
       payment
     );
-    // console.log(this.props);
+    console.log(typeof balance);
   };
 
   render() {
     console.log(this.props);
     let { balance, type, rate } = this.state;
     this.state.payment = (rate / 100) * 0.07 * balance;
-    console.log(this.state.payment);
     return (
       <div>
         <table className="big-table">

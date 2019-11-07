@@ -1,10 +1,8 @@
 button {
-  border: solid;
-  border-color: #c6cece;
-  width: 20vh;
-  font-size: 17px;
-  border-radius: 4px;
   color: #6e8ea8;
+  border: solid;
+  border-radius: 4px;
+  padding: 10px;
 }
 
 .account-background {
@@ -12,20 +10,38 @@ button {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 20px;
 }
 
 h1 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.info {
+  border: solid;
+  border-color: #c6cece;
+  width: 60vh;
+  font-size: 17px;
+  border-radius: 4px;
+  color: #6e8ea8;
+  padding: 70px;
 }
 /*# sourceMappingURL=account.css.map */

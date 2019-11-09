@@ -12,13 +12,15 @@ const initialState = {
     //   rate: 0.0,
     //   payment: 0
     // }
-  ]
+  ],
+  chartData: []
 };
 
 const DELETE_ROW = "DELETE_ROW";
 const ADD_ROW = "ADD_ROW";
 const SAVE_INPUTS = "SAVE_INPUTS";
 const GET_DATA = "GET_DATA";
+const CREATE_CHART_DATA = "CREATE_CHART_DATA";
 
 export function addRow() {
   // console.log("hey");
@@ -55,7 +57,7 @@ export function saveInputs(id, date, amount, type, balance, rate, payment) {
 
       return res.data;
     });
-  console.log(typeof save, save);
+  // console.log(typeof save, save);
   return {
     type: SAVE_INPUTS,
     payload: save
@@ -63,7 +65,7 @@ export function saveInputs(id, date, amount, type, balance, rate, payment) {
 }
 
 export function getData(
-  id,
+  user_data_id,
   date,
   amount,
   type,
@@ -74,8 +76,8 @@ export function getData(
   disposable
 ) {
   let data = axios
-    .get("/api/chart", {
-      id,
+    .get(`/api/chart/${user_data_id}`, {
+      user_data_id,
       date,
       amount,
       type,
@@ -94,11 +96,23 @@ export function getData(
   };
 }
 
+export function createChartData(data, rows) {
+  let result = axios.post("/api/chartData", { data, rows }).then(res => {
+    console.log(res.data);
+    return res.data;
+  });
+  console.log(result);
+  return {
+    type: CREATE_CHART_DATA,
+    payload: result
+  };
+}
+
 export default function dataReducer(state = initialState, action) {
   const { type, payload } = action;
   switch (type) {
     case ADD_ROW:
-      console.log(state.rows);
+      // console.log(state.rows);
       return { ...state, rows: [...state.rows, payload] };
     case SAVE_INPUTS + "_FULFILLED":
       return { ...state, data: [...state.data, payload[0]] };
@@ -107,6 +121,9 @@ export default function dataReducer(state = initialState, action) {
       return { ...state };
     case GET_DATA + "_FULFILLED":
       return { ...state, data: [...state.data, payload] };
+    case CREATE_CHART_DATA + "_FULFILLED":
+      console.log(payload);
+      return { ...state, chartData: payload };
     default:
       return state;
   }

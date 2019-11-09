@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../styles/Form/form.css";
 import { connect } from "react-redux";
-import { addRow } from "../../ducks/dataReducer";
+import { addRow, createChartData } from "../../ducks/dataReducer";
 import { Link } from "react-router-dom";
 import Row from "../Row/Row";
 import axios from "axios";
@@ -36,9 +36,7 @@ class Form extends Component {
     let data = this.props.redux.dataReducer.data;
     let rows = this.props.redux.dataReducer.rows.length - 1;
     // console.log(rows);
-    axios.post("/api/chartData", { data, rows }).then(res => {
-      console.log(res);
-    });
+    this.props.createChartData(data, rows);
   };
 
   render() {
@@ -111,5 +109,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { addRow }
+  { addRow, createChartData }
 )(Form);

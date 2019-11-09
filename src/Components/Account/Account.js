@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { logout, getUser } from "../../ducks/reducer";
+import { logout, getUser, editInfo, deleteInfo } from "../../ducks/reducer";
 
 import "../../styles/Account/account.css";
 
@@ -12,9 +12,35 @@ class Account extends React.Component {
       user: [],
       name: "",
       lastName: "",
-      phone: ""
+      phone: "",
+      editing: false
     };
   }
+
+  componentDidUpdate = prevProps => {
+    if (prevProps.users !== this.props.users) {
+      this.setState({ user: this.props.user.user });
+    }
+  };
+
+  editInfo = id => {
+    const { name, lastName, phone } = this.props.user.user;
+    this.props.editInfo(name, lastName, phone, id);
+    this.setState({
+      name: "",
+      lastName: "",
+      phone: ""
+    });
+  };
+
+  updatedInfo = () => {};
+
+  cancel = () => {
+    const { user_name, user_lastName, user_phone } = this.props.user.user;
+
+    this.setState({ editing: false });
+    this.setState({ user_name, user_lastName, user_phone });
+  };
 
   render() {
     const { user } = this.props.user;
@@ -26,6 +52,10 @@ class Account extends React.Component {
             Welcome {user.user_name} {user.user_lastname} !
           </h2>
           <h2>Phone Number: {user.user_phone}</h2>
+          <button onClick={() => this.props.editInfo()}>Edit</button>
+          <button onClick={() => this.props.deleteInfo(user.user_id)}>
+            Delete
+          </button>
         </div>
         <Link to="/form">
           <button>Insert debt Here</button>
@@ -46,5 +76,5 @@ function mapStateToProps(state) {
 
 export default connect(
   mapStateToProps,
-  { logout, getUser }
+  { logout, getUser, editInfo, deleteInfo }
 )(Account);

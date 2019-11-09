@@ -17,6 +17,7 @@ const LOGOUT = "LOGOUT";
 const UPDATE_USER = "UPDATE_USER";
 const GET_USER = "GET_USER";
 const EDIT_INFO = "EDIT_INFO";
+const DELETE_INFO = "DELETE_INFO";
 
 export function updateUser(userObj) {
   return {
@@ -35,12 +36,20 @@ export function getUser(id) {
   };
 }
 
-export const editInfo = (id, user_name, user_lastname, user_phone) => {
+export const editInfo = (user_id, user_name, user_lastname, user_phone) => {
   let data = axios
-    .put(`/api/profile/${id}`, { user_name, user_lastname, user_phone })
+    .put(`/api/profile/${user_id}`, { user_name, user_lastname, user_phone })
     .then(res => res.data);
   return {
     type: EDIT_INFO,
+    payload: data
+  };
+};
+
+export const deleteInfo = id => {
+  let data = axios.delete(`/api/profile/${id}`).then(res => res.data);
+  return {
+    type: DELETE_INFO,
     payload: data
   };
 };
@@ -80,6 +89,8 @@ export default function reducer(state = initialState, action) {
     case GET_USER + "_FULFILLED":
       return { ...state, user: payload };
     case EDIT_INFO + "_FULFILLED":
+      return { user: payload };
+    case DELETE_INFO + "_FULFILLED":
       return { user: payload };
     default:
       return state;

@@ -17,99 +17,81 @@ module.exports = {
   },
   generateChartInfo: (req, res) => {
     const { data, rows } = req.body;
-    // console.log(data);
-    // console.log(rows);
 
     const amount = +data[0].amount;
-    // console.log(typeof amount);
-    // console.log(amount);
+
     let date = data[0].date;
-    // console.log(date);
-    // console.log(data[1]);
+
     let payment = 0;
     for (let j = 0; j <= rows; j++) {
       payment += +data[j].payment;
     }
-    // console.log(payment);
 
-    // let payment = data[0][0].payment;
     let disposable = +amount - +payment;
-    // console.log(disposable);
 
-    let sortedDebt = data.sort(function(a, b) {
+    let sortedDebt = data;
+    sortedDebt.sort(function(a, b) {
       return b.rate - a.rate;
     });
-
-    // let months = ;
-
-    // for (let m = 0; m < months.length; m++) {
-    //   if (m === months.length) {
-    //     m = 0;
-    //   }
-    //   // let date = months[m];
-    //   console.log(months[m]);
-    // }
 
     let chartInfo = [
       {
         date: date,
-        // [
-        //   "January",
-        //   "February",
-        //   "March",
-        //   "April",
-        //   "May",
-        //   "June",
-        //   "July",
-        //   "August",
-        //   "September",
-        //   "October",
-        //   "November",
-        //   "December"
-        // ],
-        amount: +amount,
-        payment: +payment,
-        disposable: +disposable,
+        // type: type,
+        amount: amount,
+        payment: payment,
+        disposable: disposable,
         savings: 0,
         beginningDebt: sortedDebt,
         endingDebt: sortedDebt
       }
     ];
+    // console.log("chartInfo", chartInfo[0].endingDebt);
 
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 2; i++) {
       let newChartDate = {
         date: date,
         amount: chartInfo[i].amount,
         payment: 0,
+        // type: chartInfo[i].type,
         disposable: chartInfo[i].disposable,
         savings: chartInfo[i].savings,
-        // beginningDebt: chartInfo[i].endingDebt,
-        endingDebt: chartInfo[i].endingDebt
+        beginningDebt: chartInfo[i].endingDebt,
+        endingDebt: []
       };
-      // console.log(newChartDate.payment);
+
       let payoff = newChartDate.amount - chartInfo[i].payment;
-      // console.log(payoff);
-      let updatedDebt = chartInfo[i].endingDebt;
+      // console.log("payoff", payoff);
+
+      let updatedDebt = chartInfo[i].beginningDebt;
+
       updatedDebt.map(element => {
         if (element.balance !== 0) {
           if (element.balance - payoff > 0) {
+            // console.log("hit 1");
             element.balance = element.balance - payoff;
             element.payment = element.balance * ((element.rate / 100) * 0.07);
             payoff = 0;
+            // console.log("debt element", element);
+            // console.log("payoff", payoff);
           } else if (element.balance - payoff === 0) {
+            // console.log("hit 2");
             element.balance = 0;
             element.payment = 0;
             payoff = 0;
-            disposable = 0;
+            // console.log("debt element", element);
+            // console.log("payoff", payoff);
           } else {
+            // console.log("hit 3");
             payoff = payoff - element.balance;
             element.balance = 0;
             element.payment = 0;
+            // console.log("debt element", element);
+            // console.log("payoff", payoff)
           }
-          console.log(element.balance);
-          // console.log(element.payment);
         }
       });
+      // console.log(updatedDebt);
 
       newChartDate.savings += payoff;
 
@@ -119,13 +101,33 @@ module.exports = {
         newChartDate.payment += chartInfo[i].endingDebt[j].payment;
       }
       newChartDate.disposable = newChartDate.amount - newChartDate.payment;
+      // console.log(newChartDate);
+      // chartInfo.push(newChartDate);
 
-      chartInfo.push(newChartDate);
-      // console.log(chartInfo);
+      db.save_chart_date(newChartDate); //Instead of chartInfo.push you can do db.save_chart_date(newChartDate)
+
+      // console.log(chartInfo[0].endingDebt);
     }
-    req.session.chartInfo = chartInfo;
-    // console.log(req.session.chartInfo);
-    res.status(200).send(req.session.chartInfo);
+    // req.session.chartInfo = chartInfo;
+    let result = db.getAllChartData().then(res.status(200).send(result));
+    // console.log(req.session.chartInfo[0].beginningDebt);
+  },
+
+  deleteInfo: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+    db.delete_info(id)
+      .then(data => res.status(200).send(data))
+      .catch(err => console.log(err));
+  },
+
+  editInfo: (req, res) => {
+    const db = req.app.get("db");
+    const { id } = req.params;
+    const { name, lastName, phone } = req.body;
+    db.edit_info(name, lastName, phone, id)
+      .then(data => res.status(200).send(data))
+      .catch(err => console.log(err));
   },
 
   getData: (req, res) => {

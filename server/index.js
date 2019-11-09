@@ -31,8 +31,8 @@ app.use(
 app.get("/api/profile/:id", ctrl.getUser);
 app.post("/api/form", ctrl.addForm);
 app.post("/api/chartData", ctrl.generateChartInfo);
-// app.put("/api/profile/:id", ctrl.editInfo);
-// app.delete("/api/form", ctrl.deleteRow);
+app.put("/api/profile/:id", ctrl.editInfo);
+app.delete("/api/profile/:id", ctrl.deleteInfo);
 app.get("/api/chart/:id", ctrl.getData);
 
 //auth controller

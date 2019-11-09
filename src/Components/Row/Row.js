@@ -29,7 +29,7 @@ class Row extends React.Component {
   saveInputs = e => {
     e.preventDefault();
     // console.log("hit");
-    console.log(this.props.redux.dataReducer);
+    // console.log(this.props.redux.dataReducer);
     let { type, balance, rate, payment } = this.state;
     this.props.saveInputs(
       this.props.redux.reducer.user.user_id,
@@ -40,11 +40,11 @@ class Row extends React.Component {
       rate,
       payment
     );
-    console.log(typeof balance);
+    console.log(type, balance, rate, payment);
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     let { balance, type, rate } = this.state;
     this.state.payment = (rate / 100) * 0.07 * balance;
     return (

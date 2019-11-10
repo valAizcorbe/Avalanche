@@ -2,17 +2,7 @@ import axios from "axios";
 
 const initialState = {
   rows: [""],
-  data: [
-    // {
-    //   id: 0,
-    //   date: "",
-    //   amount: 0,
-    //   type: "",
-    //   balance: 0,
-    //   rate: 0.0,
-    //   payment: 0
-    // }
-  ],
+  data: [],
   chartData: []
 };
 
@@ -53,7 +43,6 @@ export function saveInputs(id, date, amount, type, balance, rate, payment) {
     })
     .then(res => {
       console.log(res.data);
-      console.log(typeof res.data);
 
       return res.data;
     });
@@ -101,7 +90,6 @@ export function createChartData(data, rows) {
     console.log(res.data);
     return res.data;
   });
-  console.log(result);
   return {
     type: CREATE_CHART_DATA,
     payload: result
@@ -120,9 +108,8 @@ export default function dataReducer(state = initialState, action) {
       state.rows.splice(payload, 1);
       return { ...state };
     case GET_DATA + "_FULFILLED":
-      return { ...state, data: [...state.data, payload] };
+      return { ...state, data: [...state.data, { payload }] };
     case CREATE_CHART_DATA + "_FULFILLED":
-      console.log(payload);
       return { ...state, chartData: payload };
     default:
       return state;

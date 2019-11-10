@@ -89,7 +89,7 @@ export default function reducer(state = initialState, action) {
     case GET_USER + "_FULFILLED":
       return { ...state, user: payload };
     case EDIT_INFO + "_FULFILLED":
-      return { user: payload };
+      return { ...state, user: { payload } };
     case DELETE_INFO + "_FULFILLED":
       return { user: payload };
     default:

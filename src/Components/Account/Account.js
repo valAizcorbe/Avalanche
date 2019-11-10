@@ -23,17 +23,24 @@ class Account extends React.Component {
     }
   };
 
-  editInfo = id => {
+  edit = () => {
+    this.setState({ editing: true });
+  };
+
+  saveChanges = id => {
     const { name, lastName, phone } = this.props.user.user;
     this.props.editInfo(name, lastName, phone, id);
     this.setState({
-      name: "",
-      lastName: "",
-      phone: ""
+      editing: false
     });
   };
 
-  updatedInfo = () => {};
+  handleInputs = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+  };
 
   cancel = () => {
     const { user_name, user_lastName, user_phone } = this.props.user.user;
@@ -44,7 +51,7 @@ class Account extends React.Component {
 
   render() {
     const { user } = this.props.user;
-
+    let { name, lastName, phone } = this.state;
     return (
       <section className="account-background">
         <div className="info">
@@ -52,7 +59,35 @@ class Account extends React.Component {
             Welcome {user.user_name} {user.user_lastname} !
           </h2>
           <h2>Phone Number: {user.user_phone}</h2>
-          <button onClick={() => this.props.editInfo()}>Edit</button>
+          {this.state.editing ? (
+            <div>
+              <div className="edit-inputs">
+                <input
+                  value={name}
+                  onChange={e => this.handleInputs(e)}
+                  name="name"
+                />
+                <input
+                  value={lastName}
+                  onChange={e => this.handleInputs(e)}
+                  name="lastName"
+                />
+                <input
+                  value={phone}
+                  onChange={e => this.handleInputs(e)}
+                  name="phone"
+                />
+                <div className="buttons">
+                  <button onClick={this.saveChanges}>Save Changes</button>
+                  <button onClick={this.cancel}>Cancel</button>
+                </div>
+              </div>
+            </div>
+          ) : null}
+          {this.state.editing ? null : (
+            <button onClick={this.edit}>Edit</button>
+          )}
+
           <button onClick={() => this.props.deleteInfo(user.user_id)}>
             Delete
           </button>

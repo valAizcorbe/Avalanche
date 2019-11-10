@@ -17,9 +17,8 @@ module.exports = {
   },
   generateChartInfo: (req, res) => {
     const { data, rows } = req.body;
-
     const amount = +data[0].amount;
-
+    let type = data[0].type;
     let date = data[0].date;
 
     let payment = 0;
@@ -37,7 +36,7 @@ module.exports = {
     let chartInfo = [
       {
         date: date,
-        // type: type,
+        type: type,
         amount: amount,
         payment: payment,
         disposable: disposable,
@@ -48,12 +47,12 @@ module.exports = {
     ];
     // console.log("chartInfo", chartInfo[0].endingDebt);
 
-    for (let i = 0; i < 2; i++) {
+    for (let i = 0; i < 20; i++) {
       let newChartDate = {
         date: date,
         amount: chartInfo[i].amount,
         payment: 0,
-        // type: chartInfo[i].type,
+        type: chartInfo[i].type,
         disposable: chartInfo[i].disposable,
         savings: chartInfo[i].savings,
         beginningDebt: chartInfo[i].endingDebt,
@@ -64,6 +63,7 @@ module.exports = {
       // console.log("payoff", payoff);
 
       let updatedDebt = chartInfo[i].beginningDebt;
+      // console.log(updatedDebt);
 
       updatedDebt.map(element => {
         if (element.balance !== 0) {
@@ -91,7 +91,7 @@ module.exports = {
           }
         }
       });
-      // console.log(updatedDebt);
+      console.log(updatedDebt);
 
       newChartDate.savings += payoff;
 
@@ -101,16 +101,18 @@ module.exports = {
         newChartDate.payment += chartInfo[i].endingDebt[j].payment;
       }
       newChartDate.disposable = newChartDate.amount - newChartDate.payment;
-      // console.log(newChartDate);
-      // chartInfo.push(newChartDate);
 
-      db.save_chart_date(newChartDate); //Instead of chartInfo.push you can do db.save_chart_date(newChartDate)
+      chartInfo.push(newChartDate);
+
+      // db.save_chart_date(newChartDate)//Instead of chartInfo.push you can do db.save_chart_date(newChartDate)
 
       // console.log(chartInfo[0].endingDebt);
     }
-    // req.session.chartInfo = chartInfo;
-    let result = db.getAllChartData().then(res.status(200).send(result));
-    // console.log(req.session.chartInfo[0].beginningDebt);
+    //let result = db.get_all_chart_data()  res.status(200).send(result)
+    req.session.chartInfo = chartInfo;
+
+    console.log(req.session.chartInfo[0].endingDebt);
+    res.status(200).send(req.session.chartInfo);
   },
 
   deleteInfo: (req, res) => {

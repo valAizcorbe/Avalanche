@@ -1,7 +1,5 @@
 update users
-set user_name = $1, 
-user_lastname = $2, 
-user_phone = $3
+set user_name = $1, user_lastname = $2, user_phone = $3
 where user_id = $4;
 
-returning *;
+select * from users order by user_id;

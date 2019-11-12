@@ -3,7 +3,7 @@ import axios from "axios";
 const initialState = {
   rows: [""],
   data: [],
-  chartData: []
+  chartData: [{}, {}, { payload: [] }]
 };
 
 const DELETE_ROW = "DELETE_ROW";
@@ -42,7 +42,7 @@ export function saveInputs(id, date, amount, type, balance, rate, payment) {
       payment
     })
     .then(res => {
-      console.log(res.data);
+      // console.log(res.data);
 
       return res.data;
     });
@@ -87,7 +87,7 @@ export function getData(
 
 export function createChartData(data, rows) {
   let result = axios.post("/api/chartData", { data, rows }).then(res => {
-    console.log(res.data);
+    // console.log(res.data);
     return res.data;
   });
   return {

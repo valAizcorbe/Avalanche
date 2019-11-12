@@ -41,7 +41,7 @@ export const editInfo = (user_name, user_lastname, user_phone, user_id) => {
   let data = axios
     .put(`/api/profile/${user_id}`, { user_name, user_lastname, user_phone })
     .then(res => res.data);
-  console.log({ data });
+  console.log(data);
   return {
     type: EDIT_INFO,
     payload: data
@@ -90,7 +90,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, user: { signedIn: false } };
     case GET_USER + "_FULFILLED":
       return { ...state, user: payload };
-    case EDIT_INFO:
+    case EDIT_INFO + "_FULFILLED":
       console.log({ payload });
       return { ...state, user: payload };
     case DELETE_INFO + "_FULFILLED":

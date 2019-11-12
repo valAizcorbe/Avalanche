@@ -8,20 +8,51 @@ class Chart extends Component {
     super(props);
     this.state = {
       date: [],
+      chartData: [],
       balance: [],
       data: {
-        labels: this.props.redux.dataReducer.chartData.map(
-          element => element.date
-        ),
+        labels: [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August"
+        ],
         datasets: [
           {
-            label: this.props.redux.dataReducer.chartData.map(
-              element => element.balance
-            ),
+            label: "Payment",
             backgroundColor: "rgba()",
-            // data: "Lolololo"
-            data: this.props.redux.dataReducer.chartData.map(
-              element => element.balance
+
+            data: this.props.redux.dataReducer.chartData[2].payload.map(
+              element => element.payment
+            )
+          },
+          {
+            label: "Savings",
+            backgroundColor: "rgba()",
+            data: this.props.redux.dataReducer.chartData[2].payload.map(
+              element => element.savings
+            )
+          },
+          {
+            label: "Disposable",
+            data: this.props.redux.dataReducer.chartData[2].payload.map(
+              element => element.disposable
             )
           }
         ]
@@ -29,7 +60,7 @@ class Chart extends Component {
     };
   }
   render() {
-    console.log(this.props.redux.dataReducer.chartData.endingDebt[0]);
+    console.log(this.props.redux.dataReducer.chartData);
 
     return (
       <div>
@@ -40,7 +71,7 @@ class Chart extends Component {
             responsive: true,
             title: {
               display: true,
-              text: "chart",
+              text: "Chart",
               fontSize: 25
             },
             legend: {

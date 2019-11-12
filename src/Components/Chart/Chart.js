@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
 import { getData } from "../../ducks/dataReducer";
 import { connect } from "react-redux";
+import "../../styles/Chart/chart.css";
 
 class Chart extends Component {
   constructor(props) {
@@ -36,23 +37,24 @@ class Chart extends Component {
         datasets: [
           {
             label: "Payment",
-            backgroundColor: "rgba()",
+            backgroundColor: "rgba(145, 58, 81,1)",
 
             data: this.props.redux.dataReducer.chartData[2].payload.map(
               element => element.payment
             )
           },
           {
-            label: "Savings",
-            backgroundColor: "rgba()",
+            label: "Disposable",
+            backgroundColor: "rgba(35, 94, 112, 1)",
             data: this.props.redux.dataReducer.chartData[2].payload.map(
-              element => element.savings
+              element => element.disposable
             )
           },
           {
-            label: "Disposable",
+            label: "Savings",
+            backgroundColor: "rgba(119, 162, 113, 1)",
             data: this.props.redux.dataReducer.chartData[2].payload.map(
-              element => element.disposable
+              element => element.savings
             )
           }
         ]
@@ -63,7 +65,7 @@ class Chart extends Component {
     console.log(this.props.redux.dataReducer.chartData);
 
     return (
-      <div>
+      <div className="chartContainer">
         <Line
           className="chartInfo"
           data={this.state.data}
@@ -71,7 +73,7 @@ class Chart extends Component {
             responsive: true,
             title: {
               display: true,
-              text: "Chart",
+              text: "Payment, Disposable and Savings",
               fontSize: 25
             },
             legend: {

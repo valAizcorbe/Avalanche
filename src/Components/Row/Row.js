@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { saveInputs, deleteRow } from "../../ducks/dataReducer";
+import "../../styles/Row/row.css";
 
 class Row extends React.Component {
   constructor() {

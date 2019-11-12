@@ -7,6 +7,7 @@ $textColor: rgb(110, 142, 168);
   font-size: 17px;
   border-radius: 4px;
   color: $textColor;
+  overflow-x: auto;
 }
 
 $textColor: rgb(110, 142, 168);
@@ -33,6 +34,7 @@ $textColor: rgb(110, 142, 168);
   box-sizing: border-box;
   flex-wrap: wrap;
   color: $textColor;
+  overflow-x: auto;
 }
 
 .first-box {

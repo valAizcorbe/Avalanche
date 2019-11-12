@@ -36,12 +36,12 @@ function Landing() {
             the list and move on to the loan with the next highest interest
             rate. The previous loan’s minimum payment (which you no longer need
             to pay) becomes available for additional debt payments.
+            <img
+              src="http://hugo.debtrescue.co.za/blog/wp-content/uploads/2019/05/Debt-Avalanche-Method.jpg"
+              width="450px"
+              alt="man skiing"
+            />
           </div>
-          <img
-            src="http://hugo.debtrescue.co.za/blog/wp-content/uploads/2019/05/Debt-Avalanche-Method.jpg"
-            width="450px"
-            alt="man skiing"
-          />
         </article>
 
         <article>

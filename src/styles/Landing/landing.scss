@@ -8,6 +8,7 @@ $textColor: rgb(110, 142, 168);
 .background {
   color: $textColor;
   display: flex;
+  overflow-x: auto;
   flex-wrap: wrap;
   @include flex();
 }
@@ -46,6 +47,8 @@ h3 {
 .img {
   border-radius: 5px;
   display: flex;
+  flex-wrap: wrap;
+
   justify-content: center;
   align-self: center;
   @include flex();

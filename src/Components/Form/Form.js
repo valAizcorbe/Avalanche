@@ -88,14 +88,16 @@ class Form extends Component {
             type="number"
           />
         </div>
-        {table}
-        {/* shows the table  */}
-        <button onClick={e => this.addRow(e)} className="button-type">
-          Add Row
-        </button>
-        <Link to="/chart">
+        <div>{table}</div>
+        <div>
+          <button onClick={e => this.addRow(e)} className="button-type">
+            Add Row
+          </button>
           <button onClick={e => this.handleResult(e)}>Calculate</button>
-        </Link>
+          <Link to="/chart">
+            <button>Show chart</button>
+          </Link>
+        </div>
       </form>
     );
   }

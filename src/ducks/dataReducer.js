@@ -65,7 +65,7 @@ export function getData(
   disposable
 ) {
   let data = axios
-    .get(`/api/chart/${user_data_id}`, {
+    .get(`/api/table/${user_data_id}`, {
       user_data_id,
       date,
       amount,
@@ -110,7 +110,7 @@ export default function dataReducer(state = initialState, action) {
     case GET_DATA + "_FULFILLED":
       return { ...state, data: [...state.data, { payload }] };
     case CREATE_CHART_DATA + "_FULFILLED":
-      return { ...state, chartData: payload };
+      return { ...state, chartData: [...state.data, { payload }] };
     default:
       return state;
   }

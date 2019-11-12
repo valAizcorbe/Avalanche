@@ -9,27 +9,30 @@ class Account extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: [],
-      name: "",
-      lastName: "",
-      phone: "",
+      user: props.user.user,
+      id: props.user.user_id,
+      name: props.user.user_name,
+      lastName: props.user.user_lastname,
+      phone: props.user.user_phone,
       editing: false
     };
   }
 
-  componentDidUpdate = prevProps => {
-    if (prevProps.users !== this.props.users) {
-      this.setState({ user: this.props.user.user });
-    }
-  };
+  // componentDidUpdate = prevProps => {
+  //   if (prevProps.users !== this.props.users) {
+  //     this.setState({ user: this.props.user.user });
+  //   }
+  // };
 
   edit = () => {
     this.setState({ editing: true });
   };
 
-  saveChanges = id => {
-    const { name, lastName, phone } = this.props.user.user;
-    this.props.editInfo(name, lastName, phone, id);
+  saveChanges = () => {
+    const { name, lastName, phone } = this.state;
+    console.log(this.props.user.user.user_id);
+    this.props.editInfo(name, lastName, phone, this.props.user.user.user_id);
+    // console.log(this.props.editInfo(name, lastName, phone, id));
     this.setState({
       editing: false
     });
@@ -37,6 +40,7 @@ class Account extends React.Component {
 
   handleInputs = e => {
     const { name, value } = e.target;
+    e.persist();
     this.setState({
       [name]: value
     });
@@ -51,6 +55,7 @@ class Account extends React.Component {
 
   render() {
     const { user } = this.props.user;
+    console.log(user);
     let { name, lastName, phone } = this.state;
     return (
       <section className="account-background">
@@ -66,16 +71,19 @@ class Account extends React.Component {
                   value={name}
                   onChange={e => this.handleInputs(e)}
                   name="name"
+                  type="text"
                 />
                 <input
                   value={lastName}
                   onChange={e => this.handleInputs(e)}
                   name="lastName"
+                  type="text"
                 />
                 <input
                   value={phone}
                   onChange={e => this.handleInputs(e)}
                   name="phone"
+                  type="number"
                 />
                 <div className="buttons">
                   <button onClick={this.saveChanges}>Save Changes</button>

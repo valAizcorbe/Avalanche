@@ -20,6 +20,18 @@ savings decimal(10,2),
 disposable decimal(10,2)
 );
 
+create table results(
+user_results_id integer references users(user_id),
+date varchar(70),
+amount decimal(10, 2),
+type_of_debt varchar(20),
+balance decimal(10, 2),
+rate decimal(10, 2),
+payment decimal(10,2),
+savings decimal(10,2),
+disposable decimal(10,2)
+);
+
 insert into users (
 user_email,
 user_password,

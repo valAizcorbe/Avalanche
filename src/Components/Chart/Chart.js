@@ -15,8 +15,8 @@ class Chart extends Component {
         ),
         datasets: [
           {
-            label: props.redux.dataReducer.chartData.map(
-              element => element.type
+            label: this.props.redux.dataReducer.chartData.map(
+              element => element.balance
             ),
             backgroundColor: "rgba()",
             // data: "Lolololo"
@@ -29,7 +29,7 @@ class Chart extends Component {
     };
   }
   render() {
-    console.log(this.props.redux.dataReducer.chartData.endingDebt);
+    console.log(this.props.redux.dataReducer.chartData.endingDebt[0]);
 
     return (
       <div>

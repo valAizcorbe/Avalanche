@@ -30,10 +30,10 @@ app.use(
 //controllers
 app.get("/api/profile/:id", ctrl.getUser);
 app.post("/api/form", ctrl.addForm);
-app.post("/api/chartData", ctrl.generateChartInfo);
-app.put("/api/profile/:id", ctrl.editInfo);
-app.delete("/api/profile/:id", ctrl.deleteInfo);
-app.get("/api/chart/:id", ctrl.getData);
+app.post("/api/chartData", ctrl.createChartData);
+app.put("/api/profile/:user_id", ctrl.editInfo);
+app.delete("/api/profile/:user_id", ctrl.deleteInfo);
+app.get("/api/table/:id", ctrl.getData);
 
 //auth controller
 

@@ -15,7 +15,8 @@ module.exports = {
       .then(data => res.status(200).send(data))
       .catch(err => console.log(err));
   },
-  generateChartInfo: (req, res) => {
+
+  createChartData: (req, res) => {
     const { data, rows } = req.body;
     const amount = +data[0].amount;
     let type = data[0].type;
@@ -102,17 +103,21 @@ module.exports = {
       }
       newChartDate.disposable = newChartDate.amount - newChartDate.payment;
 
-      chartInfo.push(newChartDate);
-
-      // db.save_chart_date(newChartDate)//Instead of chartInfo.push you can do db.save_chart_date(newChartDate)
+      // chartInfo.push(newChartDate);
+      const db = req.app.get("db");
+      db.save_chart_date(newChartDate); //Instead of chartInfo.push you can do db.save_chart_date(newChartDate)
 
       // console.log(chartInfo[0].endingDebt);
     }
-    //let result = db.get_all_chart_data()  res.status(200).send(result)
-    req.session.chartInfo = chartInfo;
+    const db = req.app.get("db");
+    let result = db
+      .createChartData()
+      .then(res.status(200).send(result))
+      .catch(err => console.log(err));
+    // req.session.chartInfo = chartInfo;
 
-    console.log(req.session.chartInfo[0].endingDebt);
-    res.status(200).send(req.session.chartInfo);
+    // console.log(req.session.chartInfo[0].endingDebt);
+    // res.status(200).send(req.session.chartInfo);
   },
 
   deleteInfo: (req, res) => {
@@ -125,10 +130,13 @@ module.exports = {
 
   editInfo: (req, res) => {
     const db = req.app.get("db");
-    const { id } = req.params;
-    const { name, lastName, phone } = req.body;
-    db.edit_info(name, lastName, phone, id)
-      .then(data => res.status(200).send(data))
+    let { user_id } = req.params;
+    let { user_name, user_lastname, user_phone } = req.body;
+    db.edit_info(user_name, user_lastname, user_phone, +user_id)
+      .then(data => {
+        console.log(data[0]);
+        res.status(200).send(data[0]);
+      })
       .catch(err => console.log(err));
   },
 

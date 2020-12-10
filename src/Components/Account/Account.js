@@ -70,6 +70,7 @@ class Account extends React.Component {
                 <input
                   value={name}
                   onChange={e => this.handleInputs(e)}
+                  placeholder="First Name"
                   name="name"
                   type="text"
                 />
@@ -77,6 +78,7 @@ class Account extends React.Component {
                   value={lastName}
                   onChange={e => this.handleInputs(e)}
                   name="lastName"
+                  placeholder="Last Name"
                   type="text"
                 />
                 <input
@@ -84,6 +86,7 @@ class Account extends React.Component {
                   onChange={e => this.handleInputs(e)}
                   name="phone"
                   type="number"
+                  placeholder="Phone Number"
                 />
                 <div className="buttons">
                   <button onClick={this.saveChanges}>Save Changes</button>
@@ -117,7 +120,9 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(
-  mapStateToProps,
-  { logout, getUser, editInfo, deleteInfo }
-)(Account);
+export default connect(mapStateToProps, {
+  logout,
+  getUser,
+  editInfo,
+  deleteInfo
+})(Account);

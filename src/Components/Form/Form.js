@@ -57,6 +57,8 @@ class Form extends Component {
     // console.log(table, "table");
     return (
       <form className="hole-background">
+                  <p>Select the month when you are planning to start paying and the amount.</p>
+
         <div className="first-box">
           <label>Month</label>
           <input
@@ -88,7 +90,9 @@ class Form extends Component {
             type="number"
           />
         </div>
+        <p>Add the kind of debt you have, the actual balance, interest and we'll calculate the payments.</p>
         <div>{table}</div>
+        <p>1. Calculate 2. Show chart</p>
         <div>
           <button onClick={e => this.addRow(e)} className="button-type">
             Add Row

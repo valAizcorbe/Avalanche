@@ -18,12 +18,6 @@ class Account extends React.Component {
     };
   }
 
-  // componentDidUpdate = prevProps => {
-  //   if (prevProps.users !== this.props.users) {
-  //     this.setState({ user: this.props.user.user });
-  //   }
-  // };
-
   edit = () => {
     this.setState({ editing: true });
   };

@@ -95,21 +95,12 @@ module.exports = {
       newChartDate.disposable = newChartDate.amount - newChartDate.payment;
 
       chartInfo.push(newChartDate);
-      // const db = req.app.get("db");
-      // db.save_chart_date(newChartDate); //Instead of chartInfo.push you can do db.save_chart_date(newChartDate)
-
-      // console.log(chartInfo[0]);
+      
       console.log(newChartDate);
     }
-    // const db = req.app.get("db");
-    // let result = db
-    //   .createChartData()
-    //   .then(res.status(200).send(result))
-    //   .catch(err => console.log(err));
+    
     req.session.chartInfo = chartInfo;
 
-    // console.log(req.session.chartInfo[0].endingDebt);
-    // console.log(req.session.chartInfo);
 
     res.status(200).send(req.session.chartInfo);
   },
